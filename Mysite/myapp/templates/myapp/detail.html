@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>X-Change - Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <style>
+      /* Resetting default styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Light gray background */
+      }
+
+      nav {
+        background-color: #ffffff; /* White background */
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding a subtle shadow */
+      }
+
+      nav h3 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: bold;
+        color: #333; /* Dark gray text color */
+      }
+
+      nav ul {
+        list-style-type: none;
+        display: flex;
+      }
+
+      nav ul li {
+        margin: 0 10px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #333; /* Dark gray text color */
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        background-color: purple; /* Dark purple background on hover */
+        color: #fff; /* White text color on hover */
+      }
+
+      .container {
+        padding: 20px;
+      }
+
+      .card {
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .details {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+
+      .add-to-cart-btn {
+        display: block;
+        width: 150px;
+        margin: auto;
+        background-color: purple;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 0;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .add-to-cart-btn:hover {
+        background-color: #6b1d96; /* Dark purple background on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <h3>X-Change</h3>
+      <ul>
+        <li><a href="{% url 'login'%}">Login</a></li>
+        <li><a href="{% url 'register'%}">Register</a></li>
+        <li><a href="{% url 'home'%}">Home</a></li>
+        <li><a href="{% url 'create_query'%}">Add a Query</a></li>
+        <li><a href="{% url 'dashboard'%}">Dashboard</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <h1 style="display: none">Welcome {{ username }}</h1>
+      <p style="display: none">
+        Registration Number: {{ registration_number }}
+      </p>
+      <p style="display: none">Phone Number: {{ phone_number }}</p>
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">Post Created By: {{ query.seller }}</div>
+              <div class="details">Name: {{ query.name }}</div>
+              <div class="details">
+                Registration Number: {{ query.registration_number }}
+              </div>
+              <div class="details">Phone Number: {{ query.phone_number }}</div>
+              <div class="details">
+                Mode of Transfer: {{ query.radio_field }}
+              </div>
+              <!-- Add to cart button -->
+              <div class="add-to-cart">
+                <form method="POST" action="{% url 'add_query' %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="username" value="{{ username }}" />
+                  <input
+                    type="hidden"
+                    name="query_creator_name"
+                    value="{{ query.seller }}"
+                  />
+                  <input
+                    type="hidden"
+                    name="query_name"
+                    value="{{ query.name }}"
+                  />
+                  <button type="submit" class="add-to-cart-btn">Proceed</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Show notification message when form is submitted
+      document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
+        button.addEventListener("click", function (event) {
+          event.preventDefault(); // Prevent the form from submitting
+          // Show notification message
+          alert("Click here to see the Notification");
+          // Submit the form
+          this.closest("form").submit();
+        });
+      });
+    </script>
+  </body>
+</html>

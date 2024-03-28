@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <style>
+      /* Resetting default styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      nav {
+        background-color: #f8f9fa; /* Light gray background */
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      nav ul {
+        list-style-type: none;
+        display: flex;
+        margin-left: -20px; /* Adjust margin as needed */
+      }
+
+      nav ul li {
+        margin: 20px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #333; /* Dark gray text color */
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        background-color: purple; /* Dark black background on hover */
+        color: #fff; /* White text color on hover */
+      }
+
+      /* Custom styles */
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .half {
+        width: 48%;
+      }
+
+      .card {
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+      }
+
+      .card:hover {
+        transform: scale(1.02);
+      }
+
+      .card-body {
+        padding: 20px;
+      }
+
+      .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .details {
+        font-size: 16px;
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+
+      .btn-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+      }
+
+      .edit-btn,
+      .delete-btn {
+        background-color: purple;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+
+      .edit-btn:hover,
+      .delete-btn:hover {
+        background-color: #6a0dad;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <h3 style="padding: 20px">X-Change</h3>
+      <ul>
+        <li><a href="{% url 'login'%}">Login</a></li>
+        <li><a href="{% url 'register'%}">Register</a></li>
+        <li><a href="{% url 'home'%}">Home</a></li>
+        <li><a href="{% url 'create_query'%}">Add a Query</a></li>
+        <li><a href="{% url 'dashboard'%}">Dashboard</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <div class="half">
+        <h2 style="text-align: center">Querys created by you</h2>
+        <br />
+        {% for query in querys %}
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">Post Created By: {{ query.seller }}</div>
+            <div class="details">Name: {{ query.name }}</div>
+            <div class="details">
+              Registration Number: {{ query.registration_number }}
+            </div>
+            <div class="details">Phone Number: {{ query.phone_number }}</div>
+            <div class="details">Mode of Transfer: {{ query.radio_field }}</div>
+            <div class="btn-container">
+              <!-- Edit form -->
+              <form action="{% url 'edit_query' query.id %}" method="get">
+                <button type="submit" class="edit-btn">Edit</button>
+              </form>
+              <!-- Delete form -->
+              <form action="{% url 'delete_query' query.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="delete-btn">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="half">
+        <h2 style="text-align: center">People shown Intrest on your Post</h2>
+        <br />
+        <div>
+          {% for item in owner_query_list %}
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">Owner Name: {{ item.owner_name }}</div>
+              <div class="details">Query Name: {{ item.query_name }}</div>
+              <div class="details">Registration Number: {{ item.regNo }}</div>
+              <div class="details">Phone Number: {{ item.PhNo }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation Bar</title>
+    <style>
+      /* Resetting default styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      nav {
+        background-color: #f8f9fa; /* Light gray background */
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      nav ul {
+        list-style-type: none;
+        display: flex;
+        margin-left: -20px; /* Adjust margin as needed */
+      }
+
+      nav ul li {
+        margin: 20px;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #333; /* Dark gray text color */
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        background-color: purple; /* Dark black background on hover */
+        color: #fff; /* White text color on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <h3 style="padding: 20px; font-size = 40px;">X-Change</h3>
+      <ul>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+        <li><a href="#">Add a Query</a></li>
+        <li><a href="#">Dashboard</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

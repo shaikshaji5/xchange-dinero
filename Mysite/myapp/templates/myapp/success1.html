@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Success</title>
+    <style>
+      /* Center content */
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Make sure content is centered vertically */
+      }
+
+      /* Reduce font size for h1 tag */
+      h1 {
+        font-size: 24px;
+        margin-bottom: 20px; /* Add some spacing below the heading */
+      }
+
+      /* Style for the Home button */
+      .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff; /* Blue color */
+        color: #fff; /* White text color */
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #0056b3; /* Darker blue color on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>You can't click on your Own Post</h1>
+    <a href="{% url 'home' %}" class="btn">Home</a>
+  </body>
+</html>

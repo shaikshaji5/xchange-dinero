@@ -1,0 +1,30 @@
+{% comment %}
+<div class="add-to-cart">
+  <form method="POST" action="{% url 'add_query' %}">
+    {% csrf_token %}
+    <input type="hidden" name="username" value="{{ username }}" />
+    <input type="hidden" name="query_creator_name" value="{{ query.seller }}" />
+    <input type="hidden" name="query_name" value="{{ query.name }}" />
+    <!DOCTYPE html>
+    <h1>Confirmation Page</h1>
+    <p>Are you sure you want to confirm?</p>
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+  </form>
+</div>
+
+<script>
+  // Show notification message when form is submitted
+  document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
+    button.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent the form from submitting
+
+      // Show notification message
+      //alert("Notification sent");
+
+      // Submit the form
+      this.closest("form").submit();
+    });
+  });
+</script>
+{% endcomment %}
