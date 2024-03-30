@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {%load static%}
+    <link rel="icon" href="{% static 'logo.png' %}" type="image/x-icon" />
     <title>X-Change - Homepage</title>
     <link
       rel="stylesheet"
@@ -10,132 +12,222 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-      /* Resetting default styles */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+                  /* Resetting default styles */
+                  * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                  }
 
-      body {
-        text-decoration: none;
+                  body {
+                    text-decoration: none;
 
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fa; /* Light gray background */
-      }
+                    font-family: Arial, sans-serif;
+                    background-color: #ffffff; /* Light gray background */
+                    font-family: "Poppins", sans-serif;
+                    font-weight: 300;
+                    font-style: normal;
+                  }
 
-      nav {
-        background-color: #ffffff; /* White background */
-        padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: #000000; /* Black text color */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding subtle shadow */
-      }
+                  nav {
 
-      nav h3 {
-        margin: 0;
-        font-size: 24px;
-        font-weight: bold;
-      }
+                    background-color: #f8f9facc; /* White background */
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    color: #000000; /* Black text color */
+                    margin:auto;
+                    margin-top:10px;
+                    width:95%;
+                    border-radius:20px;
+                    {% comment %} justify-content: center; /* Horizontally center aligns the flex items */ {% endcomment %}
+                align-items: center;
 
-      nav ul {
-        list-style-type: none;
-        display: flex;
-      }
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adding subtle shadow */
+                  }
 
-      nav ul li {
-        margin: 0 10px;
-      }
+                  nav h3 {
+                    margin: 0;
+                    font-size: 24px;
+                    font-weight: bold;
+                  }
 
-      nav ul li a {
-        text-decoration: none;
-        color: #000000; /* Black text color */
-        padding: 8px 12px;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
-      }
+                  nav ul {
+                    list-style-type: none;
+                    display: flex;
+                  }
 
-      nav ul li a:hover {
-        background-color: #6b1d96; /* Purple background on hover */
-        color: #ffffff; /* White text color on hover */
-      }
+                  nav ul li {
+                    margin: 0 10px;
+                    text-decoration: none;
 
-      .container {
-        padding: 20px;
-        text-align: center;
-      }
+                  }
 
-      .user-details {
-        font-size: 18px;
-        margin-bottom: 20px;
-      }
+                  nav ul li a {
+                    text-decoration: none;
+                    color: #000000; /* Black text color */
+                    padding: 8px 12px;
+                    border-radius: 5px;
+                    transition: background-color 0.3s ease;
+                    text-decoration: none;
 
-      .card {
-        margin-bottom: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s;
-      }
+                  }
 
-      .card:hover {
-        transform: scale(1.05);
-      }
+                  nav ul li a:hover {
+                    background-color: #378ce7; /* Purple background on hover */
+                    color: #ffffff; /* White text color on hover */
+                    text-decoration: none;
 
-      .card-body {
-        padding: 20px;
-      }
+                  }
 
-      .card-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 5px;
-      }
+                  .container {
+                    padding: 20px;
+                    text-align: center;
+                  }
 
-      .details {
-        font-size: 16px;
-        margin-bottom: 10px;
-      }
+                  .user-details {
+                    font-size: 18px;
+                    margin-bottom: 20px;
+                  }
 
-      .add-to-cart {
-        text-decoration: none;
-        text-align: center;
-      }
+                  .card {
+                    margin-bottom: 20px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s;
+                    text-align:left;
+                    {% comment %} background-color: #f8f9fa; {% endcomment %}
+                  }
 
-      .add-to-cart-btn {
-        display: inline-block;
-        background-color: purple;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 20px;
-        text-decoration: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
+                  .card:hover {
+                    transform: scale(1.05);
+                  }
 
-      .add-to-cart-btn:hover {
-        background-color: yellow; /* Dark purple background on hover */
-        text-decoration: none;
-      }
+                  .card-body {
+                    padding: 20px;
+                  }
+
+                  .card-title {
+                    font-size: 18px;
+                    font-weight: bold;
+                    margin-bottom: 5px;
+                  }
+
+                  .details {
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                  }
+
+                  .add-to-cart {
+                    text-decoration: none;
+                    text-align: center;
+                  }
+
+                  .add-to-cart-btn {
+                    display: inline-block;
+                    background-color: #378ce7;
+                    color: #fff;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 10px 20px;
+                    text-decoration: none;
+                    cursor: pointer;
+                    transition: background-color 0.3s ease;
+                  }
+
+                  .add-to-cart-btn:hover {
+                    background-color: black; /* Dark purple background on hover */
+                    color: white;
+                    text-decoration: none;
+                    {% comment %} underline: none; {% endcomment %}
+                  }
+                  .banner{
+                    display: flex;
+                  }
+                  img {
+                    flex:1.2;
+                    margin: 5px;
+                    width: 50%;
+                    z-index: -1;
+                  }
+      .button {
+              display: inline-block;
+              padding: 10px 20px; /* Adjust padding as needed */
+              font-size: 16px; /* Adjust font size as needed */
+              font-weight: 400; /* Adjust font weight as needed */
+              text-align: center;
+              text-decoration: none;
+              cursor: pointer;
+              border: 2px solid #333; /* Border color */
+              border-radius: 5px; /* Rounded corners */
+              background-color: #378ce7; /* Background color */
+              color: white; /* Text color */
+              transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+          }
+
+          .button:hover {
+              background-color: #333; /* Background color on hover */
+              color: #fff; /* Text color on hover */
+              border-color: #333; /* Border color on hover */
+          }
+          .request{
+            margin:auto;
+            width: 100%;
+            flex:1;
+
+            text-align: center;
+            justify-content:center;
+            align-items:center;
+          }
+          .modeoftransfer{
+             display: inline-block;
+            padding: 5px 10px; /* Adjust padding as needed */
+            font-size: 14px; /* Adjust font size as needed */
+            font-weight: bold; /* Adjust font weight as needed */
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            {% comment %} border: 1px solid #ffff00; /* Border color */ {% endcomment %}
+            border-radius: 20px; /* Rounded corners */
+            background-color: #E4E4FF; /* Background color */
+            color: #333; /* Text color */
+
+          }
     </style>
   </head>
   <body>
     <nav>
       <h3>X-Change</h3>
+      {% comment %}
+      <p>Hello {{ username }} !!!</p>
+      {% endcomment %}
       <ul>
         <li><a href="{% url 'login'%}">Login</a></li>
         <li><a href="{% url 'register'%}">Register</a></li>
         <li><a href="{% url 'home'%}">Home</a></li>
         <li><a href="{% url 'create_query'%}">Add a Query</a></li>
-        <li><a href="{% url 'dashboard'%}">Dashboard</a></li>
+        <li><a href="{% url 'dashboard'%}">{{username}}'s Dashboard</a></li>
       </ul>
     </nav>
 
+    <div class="banner">
+      {%load static%}
+      <img src="{% static 'banner.png'%}" />
+
+      <div class="request">
+        <h2>Create a request</h2>
+        <button class="button">Create</button>
+      </div>
+    </div>
     <div class="container">
       <div class="user-details">
-        <p>Welcome {{ username }}</p>
         <p style="display: none">
           Registration Number: {{ registration_number }}
         </p>
@@ -156,7 +248,8 @@
               <div class="details">Phone Number: {{ query.phone_number }}</div>
               {% endcomment %}
               <div class="details">
-                Mode of Transfer: {{ query.radio_field }}
+                Mode of Transfer:
+                <div class="modeoftransfer">{{ query.radio_field }}</div>
               </div>
               <div class="add-to-cart">
                 <a href="{% url 'detail' query.id %}" class="add-to-cart-btn"
